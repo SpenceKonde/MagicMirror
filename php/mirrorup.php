@@ -104,7 +104,56 @@
 	} 
 }
 	http_response_code($resp);
-	echo '{"RFDevs":[';
+	echo '{"Fargo:["';
+	$result0 =apc_fetch('Fargo0')
+	$result1 =apc_fetch('Fargo1')
+	$result2 =apc_fetch('Fargo2')
+	$result3 =apc_fetch('Fargo3')
+	$result4 =apc_fetch('Fargo4')
+	$result5 =apc_fetch('Fargo5')
+	$result6 =apc_fetch('Fargo6')
+	$result7 =apc_fetch('Fargo7')
+	if ($result0==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result1==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result2==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result3==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result4==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result5==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result6==false) {
+		echo "0,"
+	} else {
+		echo "1,"
+	}
+	if ($result7==false) {
+		echo "0"
+	} else {
+		echo "1"
+	}
+	echo '],"RFDevs":[';
 	echo apc_fetch('RFDev0');
 	echo ',';
 	echo apc_fetch('RFDev1');
