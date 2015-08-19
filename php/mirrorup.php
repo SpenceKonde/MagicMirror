@@ -1,6 +1,7 @@
 
     <?php
     $resp=200;
+    if ($_SERVER['REMOTE_ADDR']=="50.177.28.211") {
 	if (isset($_GET['RFDev0'])) {
 		$tval=$_GET['RFDev0'];
 		if ($tval==0) {
@@ -84,7 +85,24 @@
 	    } 
     	$resp=200;
 	} 
-
+	if (isset($_GET['door_up'])) {
+		$tval=$_GET['door_up'];
+		if ($tval!="undefined") {
+	    	apc_store('door_up', $tval);
+	} 
+	if (isset($_GET['door_down'])) {
+		$tval=$_GET['door_down'];
+		if ($tval!="undefined") {
+	    	apc_store('door_down', $tval);
+	} 
+	if (isset($_GET['fridge'])) {
+		$tval=$_GET['fridge'];
+		if ($tval!="undefined") {
+	    	apc_store('fridge', $tval);
+	} 
+    	$resp=200;
+	} 
+}
 	http_response_code($resp);
 	echo '{"RFDevs":[';
 	echo apc_fetch('RFDev0');
@@ -100,13 +118,19 @@
 	echo apc_fetch('light_green');
 	echo ', "blue":';
 	echo apc_fetch('light_blue');
-	echo "},temperature:";
+	echo '},"temperature":';
 	echo apc_fetch('temp');
-	echo ",pressure:";
+	echo ',"pressure":';
 	echo apc_fetch('pressure');
-	echo ",humidity:";
+	echo ',"humidity":';
 	echo apc_fetch('humidity');
-	echo ",lastmove:";
+	echo ',"motion":{"door_up":';
+	echo apc_fetch('door_up');
+	echo ',"door_down":';
+	echo apc_fetch('door_down');
+	echo ',"fridge":';
+	echo apc_fetch('fridge');
+	echo ',"lastmove":';
 	echo apc_fetch('lastmove');
-	echo "}";
+	echo "}}";
 ?>
